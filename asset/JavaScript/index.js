@@ -1,8 +1,17 @@
 const startGameBtn = document.getElementById('start-game-btn');
 
+const getRandomCell =(length) => {
+    return {
+        row: Math.floor(Math.random() * length),
+        col: Math.floor(Math.random() * length),
+    };
+};
+
 const constructGame = (length) => {
     const mainGameDiv = document.createElement('div');
     mainGameDiv.setAttribute('class', 'main-game-container');
+
+    const bunnyLocation = getRandomCell(length);
 
     for (let row = 0; row < length; row++) {
         const rowDiv =document.createElement('div');
@@ -13,14 +22,18 @@ const constructGame = (length) => {
             colDiv.setAttribute('class', 'col');
             colDiv.textContent = '?'
             rowDiv.append(colDiv);
-        }
+        };
 
-        mainGameDiv.append(rowDiv)
-    }
+        mainGameDiv.append(rowDiv);
+    };
 
-    return mainGameDiv
+    mainGameDiv.addEventListener('click', (event) => {
+        handleCellClick(event, bunnyLocation);
+    });
 
-}
+    return mainGameDiv;
+
+};
 
 const renderGameContainer = () => {
     const htmlDiv = document.getElementById('box');
