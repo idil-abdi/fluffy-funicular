@@ -1,22 +1,36 @@
+// select start button from html
 const startGameBtn = document.getElementById('start-game-btn');
 
-const handleCellClick = (event, bunnyLocation) => {
-    const target = event.target;
-    const selectedRow = +target.getAttribute("data-row");
-    const selectedCol = +target.getAttribute("data-col");
+// create a function to removed start button once clicked. 
+const handleStartBtn = () => {
+    const startGameContainer = document.getElementById('start-game-container');
+    startGameContainer.remove();
 
-    if (selectedRow === bunnyLocation.row && selectedCol === bunnyLocation.col) {
-        console.log("HURRAY");
-    } else {
-        console.log("BOO");
-    }
+    renderGameContainer();
 };
 
-const getRandomCell =(length) => {
-    return {
-        row: Math.floor(Math.random() * length),
-        col: Math.floor(Math.random() * length),
-    };
+// setting up html element on javascript.
+const renderGameContainer = () => {
+    const htmlDiv = document.getElementById('box');
+
+    const mainContainerDiv = document.createElement('div');
+    mainContainerDiv.setAttribute('class', 'main-container');
+
+    const mainGameDiv = constructGame(3)
+
+    const scoreDiv = document.createElement('div');
+    scoreDiv.textContent = 'Score';
+    
+    const restartBtn = document.createElement('button');
+    restartBtn.setAttribute('class', 'btn');
+    restartBtn.textContent = 'restart';
+    restartBtn.addEventListener('click', handleRestartBtn);
+
+
+    mainContainerDiv.append(...[mainGameDiv, scoreDiv, restartBtn]);
+
+    htmlDiv.append(mainContainerDiv);
+
 };
 
 const constructGame = (length) => {
@@ -49,38 +63,27 @@ const constructGame = (length) => {
 
 };
 
-const renderGameContainer = () => {
-    const htmlDiv = document.getElementById('box');
-
-    const mainContainerDiv = document.createElement('div');
-    mainContainerDiv.setAttribute('class', 'main-container');
-
-    const mainGameDiv = constructGame(3)
-
-    const scoreDiv = document.createElement('div');
-    scoreDiv.textContent = 'Score';
-    
-    const restartBtn = document.createElement('button');
-    restartBtn.setAttribute('class', 'btn');
-    restartBtn.textContent = 'restart';
-    restartBtn.addEventListener('click', handleRestartBtn);
-
-
-    mainContainerDiv.append(...[mainGameDiv, scoreDiv, restartBtn]);
-
-    htmlDiv.append(mainContainerDiv);
-
-};
-
 const handleRestartBtn = () => {
     window.location.reload();
 };
 
-const handleStartBtn = () => {
-    const startGameContainer = document.getElementById('start-game-container');
-    startGameContainer.remove();
+const handleCellClick = (event, bunnyLocation) => {
+    const target = event.target;
+    const selectedRow = +target.getAttribute("data-row");
+    const selectedCol = +target.getAttribute("data-col");
 
-    renderGameContainer();
+    if (selectedRow === bunnyLocation.row && selectedCol === bunnyLocation.col) {
+        console.log("HURRAY");
+    } else {
+        console.log("BOO");
+    }
+};
+
+const getRandomCell =(length) => {
+    return {
+        row: Math.floor(Math.random() * length),
+        col: Math.floor(Math.random() * length),
+    };
 };
 
 startGameBtn.addEventListener('click', handleStartBtn);
