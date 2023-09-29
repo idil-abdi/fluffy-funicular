@@ -1,5 +1,17 @@
 const startGameBtn = document.getElementById('start-game-btn');
 
+const handleCellClick = (event, bunnyLocation) => {
+    const target = event.target;
+    const selectedRow = +target.getAttribute("data-row");
+    const selectedCol = +target.getAttribute("data-col");
+
+    if (selectedRow === bunnyLocation.row && selectedCol === bunnyLocation.col) {
+        console.log("HURRAY");
+    } else {
+        console.log("BOO");
+    }
+};
+
 const getRandomCell =(length) => {
     return {
         row: Math.floor(Math.random() * length),
@@ -20,6 +32,8 @@ const constructGame = (length) => {
         for (let col = 0; col < 3; col++) {
             const colDiv =document.createElement('div');
             colDiv.setAttribute('class', 'col');
+            colDiv.setAttribute("data-row", row);
+            colDiv.setAttribute("data-col", col);
             colDiv.textContent = '?'
             rowDiv.append(colDiv);
         };
