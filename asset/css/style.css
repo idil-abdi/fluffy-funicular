@@ -6,9 +6,10 @@
 
 body{
     margin: 1rem;
+    background: linear-gradient(white, blue) no-repeat;
 }
 
-h1{
+.header{
     display: none;
     text-align: center;
     margin: 2rem;
@@ -16,6 +17,11 @@ h1{
     font-family: Arial, sans-serif;
     text-decoration: underline;
     text-transform: uppercase;
+}
+
+div .header{
+    display: block;
+    margin:0;
 }
 
 div{
@@ -44,7 +50,7 @@ div{
     flex-direction: column;
     align-items: center;
     border: 1px solid black;
-    padding: 1rem 0;
+    padding-bottom: 1rem;
 }
 
 .main-game-container{
@@ -66,8 +72,13 @@ div{
     margin: 0;
 }
 
+.img-div{
+    display: flex;
+    justify-content: end;
+}
+
 @media screen and (min-width: 600px) {
-    h1{
+    .header{
         display: block;
     }
     .game{

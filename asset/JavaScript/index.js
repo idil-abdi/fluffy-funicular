@@ -13,6 +13,10 @@ const handleStartBtn = () => {
 const renderGameContainer = () => {
     const htmlDiv = document.getElementById('box');
 
+    const titleDiv = document.createElement('h1');
+    titleDiv.textContent = 'Find Stitch';
+    titleDiv.setAttribute('class', 'header');
+
     const mainContainerDiv = document.createElement('div');
     mainContainerDiv.setAttribute('class', 'main-container');
 
@@ -27,7 +31,7 @@ const renderGameContainer = () => {
     restartBtn.addEventListener('click', handleRestartBtn);
 
 
-    mainContainerDiv.append(...[mainGameDiv, scoreDiv, restartBtn]);
+    mainContainerDiv.append(...[titleDiv, mainGameDiv, scoreDiv, restartBtn]);
 
     htmlDiv.append(mainContainerDiv);
 
@@ -37,7 +41,7 @@ const constructGame = (length) => {
     const mainGameDiv = document.createElement('div');
     mainGameDiv.setAttribute('class', 'main-game-container');
 
-    const bunnyLocation = getRandomCell(length);
+    const stitchLocation = getRandomCell(length);
 
     for (let row = 0; row < length; row++) {
         const rowDiv =document.createElement('div');
@@ -56,24 +60,20 @@ const constructGame = (length) => {
     };
 
     mainGameDiv.addEventListener('click', (event) => {
-        handleCellClick(event, bunnyLocation);
+        handleCellClick(event, stitchLocation);
     });
 
     return mainGameDiv;
 
 };
 
-const handleRestartBtn = () => {
-    window.location.reload();
-};
-
-const handleCellClick = (event, bunnyLocation) => {
+const handleCellClick = (event, stitchLocation) => {
     const target = event.target;
     const selectedRow = +target.getAttribute("data-row");
     const selectedCol = +target.getAttribute("data-col");
 
-    if (selectedRow === bunnyLocation.row && selectedCol === bunnyLocation.col) {
-        console.log("HURRAY");
+    if (selectedRow === stitchLocation.row && selectedCol === stitchLocation.col) {
+        console.log('Found Stitch');
     } else {
         console.log("BOO");
     }
@@ -84,6 +84,10 @@ const getRandomCell =(length) => {
         row: Math.floor(Math.random() * length),
         col: Math.floor(Math.random() * length),
     };
+};
+
+const handleRestartBtn = () => {
+    window.location.reload();
 };
 
 startGameBtn.addEventListener('click', handleStartBtn);
