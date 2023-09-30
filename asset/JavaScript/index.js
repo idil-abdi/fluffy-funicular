@@ -91,4 +91,3 @@ const handleRestartBtn = () => {
 };
 
 startGameBtn.addEventListener('click', handleStartBtn);
-

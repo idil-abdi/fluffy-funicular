@@ -6,7 +6,7 @@
 
 body{
     margin: 1rem;
-    background: linear-gradient(white, blue) no-repeat;
+    background: linear-gradient(white, rgb(0, 53, 213)) no-repeat;
 }
 
 .header{
