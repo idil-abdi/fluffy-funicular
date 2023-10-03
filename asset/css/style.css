@@ -61,20 +61,19 @@ div{
 
 .row{
     margin: 0;
-    
 }
 
 .col{
     border:  1px solid black;
-    padding: 20px;
+    padding: 3px;
     margin: 0;
 }
 
 
 .flip-card {
     background-color: transparent;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     perspective: 1000px;
     margin: 0;
 }
@@ -86,10 +85,9 @@ div{
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.flip-card:active .inner {
+.flip-card:hover .inner {
     transform: rotateY(180deg);
 }
 
@@ -112,6 +110,10 @@ div{
     background-color: #bbb;
     color: white;
     transform: rotateY(180deg);
+}
+
+.stitchsize{
+    width: 80px;
 }
 
 .img-div{

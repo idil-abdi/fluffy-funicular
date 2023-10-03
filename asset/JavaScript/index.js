@@ -61,12 +61,23 @@ const constructGame = (length) => {
 
                     for(let sub = 0; sub < 1; sub++) {
                         const frontDiv = document.createElement('div');
+
                         frontDiv.setAttribute('class', 'front');
-                        frontDiv.setAttribute("data-row", row);
-                        frontDiv.setAttribute("data-col", col);
+                        
                         frontDiv.textContent = '?';
+
                         const backDiv = document.createElement('div');
                         backDiv.setAttribute('class', 'back');
+                        
+
+                        for(let backSub = 0; backSub < 1; backSub++) {
+                            const img = document.createElement('img');
+                            img.classList.add('stitchsize');
+                            img.src = './asset/img/EmojiStitch1.png';
+                            img.setAttribute("data-row", row);
+                            img.setAttribute("data-col", col);
+                            backDiv.append(img)
+                        }
 
                         innerDiv.append(...[frontDiv, backDiv]);
                     }
@@ -97,6 +108,8 @@ const handleCellClick = (event, stitchLocation) => {
     const selectedCol = +target.getAttribute("data-col");
 
     if (selectedRow === stitchLocation.row && selectedCol === stitchLocation.col) {
+        const foundStitch = document.createElement('h1');
+        foundStitch.textContent = 'found Stitch';
         console.log('FOUND STITCH');
     } else {
         console.log("BOO");
